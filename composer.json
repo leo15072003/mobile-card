@@ -1,0 +1,23 @@
+{
+  "name": "x99-dev/mobile-card",
+  "description": "Thư viện hỗ trợ tích hợp nạp thẻ cho website",
+  "type": "library",
+  "authors": [
+    {
+      "name": "Leo Aslan",
+      "email": "leo15072003@gmail.com"
+    }
+  ],
+  "minimum-stability": "dev",
+  "require": {
+    "php": "^7.1.3",
+    "ext-json": "*",
+    "ext-curl": "*",
+    "guzzlehttp/guzzle": "~6.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "X99Dev\\MobileCard\\": "src/"
+    }
+  }
+}
