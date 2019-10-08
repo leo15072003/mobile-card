@@ -73,7 +73,7 @@ abstract class AbstractDriver implements Factory
         ]));
 
         // Handle result
-        $result = json_decode($raw = (string) $response->getBody(), true);
+        $result = json_decode($raw = str_replace("\xEF\xBB\xBF", '', (string) $response->getBody()), true);
 
         if (empty($result)) {
             if (class_exists(Log::class)) {
@@ -103,6 +103,7 @@ abstract class AbstractDriver implements Factory
      * @param  array  $card
      *
      * @return array
+     *
      */
     abstract public function getChargeFields(array $card): array;
 
