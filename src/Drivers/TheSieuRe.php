@@ -7,6 +7,12 @@ use X99Dev\MobileCard\MobileCard;
 
 class TheSieuRe extends AbstractDriver
 {
+    protected $mapTypes = [
+        MobileCard::TYPE_VIETTEL => 'VIETTEL',
+        MobileCard::TYPE_MOBIFONE => 'MOBIFONE',
+        MobileCard::TYPE_VINAPHONE => 'VINAPHONE',
+    ];
+
     /**
      * Get the configuration fields
      *
@@ -39,15 +45,8 @@ class TheSieuRe extends AbstractDriver
      */
     public function getChargeFields(array $card): array
     {
-        // Map card types
-        $mapTypes = [
-            MobileCard::TYPE_VIETTEL => 'VIETTEL',
-            MobileCard::TYPE_MOBIFONE => 'MOBIFONE',
-            MobileCard::TYPE_VINAPHONE => 'VINAPHONE',
-        ];
-
         $data = [
-            'telco' => $mapTypes[$card['type']],
+            'telco' => $this->mapTypes[$card['type']],
             'code' => $card['pin'],
             'serial' => $card['serial'],
             'amount' => $card['price'],
@@ -83,7 +82,7 @@ class TheSieuRe extends AbstractDriver
         foreach ($data as $item) {
             $sign .= $item;
         }
-        //return $sign;
+
         return md5($sign);
     }
 
